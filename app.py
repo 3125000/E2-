@@ -10,7 +10,7 @@ st.title("🧬 Personalized Gn Starting Protocol Prediction System")
 st.markdown("🔍 Please fill in the baseline information and up to three sets of hormone monitoring data (some values can be missing).")
 
 # ==== Model loading ====
-MODEL_DIR = "C:/Users/wyk/Desktop/9.8加最大卵泡直径/"
+MODEL_DIR = ""
 reg_dose_model = joblib.load(MODEL_DIR + "reg_dose_model.pkl")
 reg_totaldose_model = joblib.load(MODEL_DIR + "reg_totaldose_model.pkl")
 reg_totaldays_model = joblib.load(MODEL_DIR + "reg_totaldays_model.pkl")
@@ -181,3 +181,4 @@ if base_stats is not None and not np.isnan(base_e2_val):
         st.markdown(f"🔢 Your **Baseline E2** value is **{base_e2_val:.0f} pg/mL** (reference P25–P75).")
 else:
     st.warning("⚠️ Baseline E2 missing or no reference data available, cannot display percentile plot.")
+
