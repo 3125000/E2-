@@ -4,8 +4,32 @@ import numpy as np
 import joblib
 import matplotlib.pyplot as plt
 
+
 # ==== Page setup ====
 st.set_page_config(page_title="Gn Starting Protocol Prediction", layout="wide")
+
+USERNAME = ['0001','0002','0003','0004','0005','0006']
+PASSWORD = '123456'
+
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+if not st.session_state.logged_in:
+    col1, col2, col3 = st.columns([1,2,1])
+    with col2:
+        st.subheader("请登录")
+        username = st.text_input("用户名")
+        password = st.text_input("密码", type="password")
+        if st.button("登录", use_container_width=True):
+            if username in USERNAME and password == PASSWORD:
+                login()
+                st.success("登录成功！")
+                st.session_state.logged_in = True
+                st.rerun()
+            else:
+                st.error("用户名或密码错误！")
+
+
 st.title("🧬 Personalized Gn Starting Protocol Prediction System")
 st.markdown("🔍 Please fill in the baseline information and up to three sets of hormone monitoring data (some values can be missing).")
 
@@ -181,4 +205,5 @@ if base_stats is not None and not np.isnan(base_e2_val):
         st.markdown(f"🔢 Your **Baseline E2** value is **{base_e2_val:.0f} pg/mL** (reference P25–P75).")
 else:
     st.warning("⚠️ Baseline E2 missing or no reference data available, cannot display percentile plot.")
+
 
