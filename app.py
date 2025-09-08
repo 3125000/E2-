@@ -22,7 +22,6 @@ if not st.session_state.logged_in:
         password = st.text_input("密码", type="password")
         if st.button("登录", use_container_width=True):
             if username in USERNAME and password == PASSWORD:
-                login()
                 st.success("登录成功！")
                 st.session_state.logged_in = True
                 st.rerun()
@@ -205,6 +204,7 @@ else:
             st.markdown(f"🔢 Your **Baseline E2** value is **{base_e2_val:.0f} pg/mL** (reference P25–P75).")
     else:
         st.warning("⚠️ Baseline E2 missing or no reference data available, cannot display percentile plot.")
+
 
 
 
